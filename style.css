@@ -1,0 +1,99 @@
+.headbutton {
+    display: inline-block;
+    padding: 14px 22px;
+    background-color: white;
+    color:  black;
+    text-decoration: none;
+    border: 1px solid #d0d0d0;
+    border-radius: 999px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.headbutton:hover {
+    display: inline-block;
+    padding: 14px 22px;
+    background-color: black;
+    color:  white;
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 999px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.image-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 320px;
+    margin: 40px auto;
+    max-width: 1100px;
+    border: 2px;
+    border-radius: 24px;
+    background-color: #f7f7f7;
+    color: #777;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.button {
+    display: inline-block;
+    padding: 20px 50px;
+    background-color: #FDB927;
+    color:  white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.button:hover {
+    display: inline-block;
+    background-color: #2b0074;
+    color:  white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.heading {
+    background-color: white;
+    padding: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+}
+
+.footer {
+    background-color: white;
+    padding: 60px 100px;
+}
+
+.footer-link {
+    color: black;
+    font-size: 10px;
+}
+
+.list {
+    display: inline-block;
+    background-color: #8442f5;
+    padding: 10px 30px;
+    width: 300px;
+    height: 400px;
+    text-align: center;
+
+}
+
+.divider {
+    padding: 50px;
+}
+
+ol li::marker {
+    font-weight: bold;
+}
