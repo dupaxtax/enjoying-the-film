@@ -1,0 +1,54 @@
+{
+    "categories": [
+        {
+            "title": "Movies",
+            "items": [
+                "Sicario",
+                "The Sandlot",
+                "Toy Story 4",
+                "Gnomeo and Juliet",
+                "Dune 2"
+            ]
+        },
+        {
+            "title": "TV Shows",
+            "items": [
+                "The Godfather",
+                "The Office",
+                "Anything with Kyle Chandler",
+                "Game of Thrones",
+                "Breaking Bad"
+            ]
+        },
+        {
+            "title": "Music Artists",
+            "items": [
+                "Kendrick Lamar",
+                "Kanye West",
+                "Taylor Swift",
+                "Jay-Z",
+                "Chad Durham"
+            ]
+        },
+        {
+            "title": "Actors",
+            "items": [
+                "Tom Hanks",
+                "Brad Pitt",
+                "Meryl Streep",
+                "Leonardo DiCaprio",
+                "Angelina Jolie"
+            ]
+        },
+        {
+            "title": "Music Tracks",
+            "items": [
+                "I'm Yours",
+                "Can't Hold Us",
+                "Lose Yourself",
+                "All I Do Is Win",
+                "Don't Stop Believin'"
+            ]
+        }
+    ]
+}

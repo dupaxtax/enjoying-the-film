@@ -1,0 +1,44 @@
+{
+    "reviews": [
+        {
+            "thumbnail": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&h=400&fit=crop",
+            "title": "Dune: Part Two",
+            "author": "Avery Durham"
+        },
+        {
+            "thumbnail": "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=600&h=400&fit=crop",
+            "title": "Oppenheimer",
+            "author": "Avery Durham"
+        },
+        {
+            "thumbnail": "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?w=600&h=400&fit=crop",
+            "title": "The Holdovers",
+            "author": "Avery Durham"
+        },
+        {
+            "thumbnail": "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=600&h=400&fit=crop",
+            "title": "Killers of the Flower Moon",
+            "author": "Avery Durham"
+        },
+        {
+            "thumbnail": "https://images.unsplash.com/photo-1524712245354-2c4e5e7121c0?w=600&h=400&fit=crop",
+            "title": "Barbie",
+            "author": "Avery Durham"
+        },
+        {
+            "thumbnail": "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&h=400&fit=crop",
+            "title": "Past Lives",
+            "author": "Avery Durham"
+        },
+        {
+            "thumbnail": "https://images.unsplash.com/photo-1517604931442-7105308f2a18?w=600&h=400&fit=crop",
+            "title": "Spider-Man: Across the Spider-Verse",
+            "author": "Avery Durham"
+        },
+        {
+            "thumbnail": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&h=400&fit=crop",
+            "title": "Poor Things",
+            "author": "Avery Durham"
+        }
+    ]
+}

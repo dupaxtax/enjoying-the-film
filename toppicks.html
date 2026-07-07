@@ -14,118 +14,46 @@
         <link rel = "icon" href = "https://markleisherproductions.com/wp-content/uploads/2021/01/logo-placeholder-png-2.png">
     </head>
 
-    <body style = "background-color: black;">
-        <div style = "background-color: #552583" class = "container">
-            <a href = "index.html" class = "headbutton">Home</a>
-            <a href = "live.html" class = "headbutton">Watch Live</a>
-            <a href = "toppicks.html" class = "headbutton">Top Picks</a>
-            <a href = "movies.html" class = "headbutton">Movies</a>
-            <a href = "shows.html" class = "headbutton">Shows</a>
-            <a href = "music.html" class = "headbutton">Music</a>
-            <a href = "about.html" class = "headbutton">About Us</a>
-        </div>
+    <body>
+        <div id = "site-header"></div>
+        <script src = "menu-loader.js"></script>
 
-        <div class = "heading" style = "font-size: 70px; text-align: center; font-family: Cherry Cream Soda;">
+        <div class = "heading" style = "font-size: 70px; text-align: center;">
             Our Top Picks
         </div>
 
         <div class = "divider"></div>
-        
-        <div class = "container">
-            <div class = "list" style = "margin-right: 10%; font-size: 40px;">
-                <div><b><u>Movies:</u></b></div>
-                <ol>
-                    <li>item 1</li>
-                    <li>item 2</li>
-                    <li>item 3</li>
-                    <li>item 4</li>
-                    <li>item 5</li>
-                </ol>
-            </div>
-            <div class = "list" style = "margin-left: 10%; font-size: 40px;">
-                <div><b><u>TV shows:</u></b></div>
-                <ol>
-                    <li>item 1</li>
-                    <li>item 2</li>
-                    <li>item 3</li>
-                    <li>item 4</li>
-                    <li>item 5</li>
-                </ol>
-            </div>
-        </div>
 
-        <div class = "divider"></div>
+        <div class = "container" id = "top-picks-container"></div>
 
-        <div class = "container">
-            <div class = "list" style = "margin-right: 10%; font-size: 40px;">
-                <div><b><u>Music Artists:</u></b></div>
-                <ol>
-                    <li>item 1</li>
-                    <li>item 2</li>
-                    <li>item 3</li>
-                    <li>item 4</li>
-                    <li>item 5</li>
-                </ol>
-            </div>
-            <div class = "list" style = "margin-left: 10%; font-size: 40px;">
-                <div><b><u>Actors:</u></b></div>
-                <ol>
-                    <li>item 1</li>
-                    <li>item 2</li>
-                    <li>item 3</li>
-                    <li>item 4</li>
-                    <li>item 5</li>
-                </ol>
-            </div>
-        </div>
+        <script>
+            fetch('top-picks.json')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('top-picks-container');
+                    data.categories.forEach(category => {
+                        const card = document.createElement('div');
+                        card.className = 'list';
 
+                        const title = document.createElement('div');
+                        title.textContent = category.title;
+                        card.appendChild(title);
 
-        <div class = "divider"></div>
+                        const ol = document.createElement('ol');
+                        category.items.forEach(item => {
+                            const li = document.createElement('li');
+                            li.textContent = item;
+                            ol.appendChild(li);
+                        });
+                        card.appendChild(ol);
 
-        <div class = "container">
-            <div class = "list" style = "margin-right: 10%; font-size: 40px;">
-                <div><b><u>Music Tracks:</u></b></div>
-                <ol>
-                    <li>item 1</li>
-                    <li>item 2</li>
-                    <li>item 3</li>
-                    <li>item 4</li>
-                    <li>item 5</li>
-                </ol>
-            </div>
-            <div class = "list" style = "margin-left: 10%; background-color: transparent;"></div>
-        </div>
-
-        <div class = "divider"></div>
-
-        <div class = "footer">
-            <a href = "contactus.html" class = "footer-link">Contact Us</a>
-            <div style = "padding: 10px;"></div>
-            <div><b>Social Media</b></div>
-            <div>
-                <a href = "https://instagram.com" class = "footer-link">Instagram</a>
-            </div>
-            <div>
-                <a href = "https://tiktok.com" class = "footer-link">Tik Tok</a>
-            </div>
-            <div>
-                <a href = "https://facebook.com" class = "footer-link">Facebook</a>
-            </div>
-            <div>
-                <a href = "https://X.com" class = "footer-link">X</a>
-            </div>
-        </div>
-
-        
-        
-
-
-
-
-        
+                        container.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading top picks:', error);
+                });
+        </script>
 
     </body>
-
-
-
 </html>

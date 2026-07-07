@@ -1,3 +1,7 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .headbutton {
     display: inline-block;
     padding: 14px 22px;
@@ -54,6 +58,7 @@
     color:  white;
     text-decoration: none;
     border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .button:hover {
     display: inline-block;
@@ -61,6 +66,7 @@
     color:  white;
     text-decoration: none;
     border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .heading {
@@ -73,21 +79,70 @@
 .footer {
     background-color: white;
     padding: 60px 100px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .footer-link {
     color: black;
     font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .list {
-    display: inline-block;
-    background-color: #8442f5;
-    padding: 10px 30px;
-    width: 300px;
-    height: 400px;
-    text-align: center;
+    background-color: white;
+    border: 2px solid #000;
+    border-radius: 24px;
+    padding: 24px;
+    width: 100%;
+    max-width: 450px;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    color: black;
+}
 
+.list > div {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.list ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: item;
+}
+
+.list li {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 16px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+.list li:last-child {
+    border-bottom: none;
+}
+
+.list li::before {
+    counter-increment: item;
+    content: counter(item);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 24px;
+    background-color: #5cb85c;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    flex-shrink: 0;
 }
 
 .divider {
@@ -96,4 +151,81 @@
 
 ol li::marker {
     font-weight: bold;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.review-card {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    text-decoration: none;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+.review-card-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.1) 100%);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.review-card-tag {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 4px 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.review-card-title {
+    margin: 0 0 12px 0;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: white;
+}
+
+.review-card-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.review-card-avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
 }
