@@ -33,7 +33,7 @@
                     data.reviews.forEach(review => {
                         const card = document.createElement('a');
                         card.className = 'review-card';
-                        card.href = '#';
+                        card.href = 'review.html?movie=' + review.slug;
                         card.style.backgroundImage = `url('${review.thumbnail}')`;
                         card.innerHTML = `
                             <div class = "review-card-overlay">

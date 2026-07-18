@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cherry+Cream+Soda&display=swap" rel="stylesheet">
+        <title>Review | Enjoying The Film</title>
+        <link rel = "stylesheet" href = "style.css">
+        <link rel = "icon" href = "https://markleisherproductions.com/wp-content/uploads/2021/01/logo-placeholder-png-2.png">
+    </head>
+    <body>
+        <div id = "site-header"></div>
+        <script src = "menu-loader.js"></script>
+
+        <div id = "review-content"></div>
+
+        <script>
+            const params = new URLSearchParams(window.location.search);
+            const slug = params.get('movie');
+            const container = document.getElementById('review-content');
+
+            if (!slug) {
+                container.innerHTML = '<div class="review-detail"><p>No review specified. <a href="movies.html">Back to reviews</a></p></div>';
+            } else {
+                fetch('movie-reviews.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        const review = data.reviews.find(r => r.slug === slug);
+                        if (!review) {
+                            container.innerHTML = '<div class="review-detail"><p>Review not found. <a href="movies.html">Back to reviews</a></p></div>';
+                            return;
+                        }
+
+                        document.title = review.title + ' | Enjoying The Film';
+
+                        const stars = '&#9733;'.repeat(review.rating) + '&#9734;'.repeat(5 - review.rating);
+                        const deck = review.body.includes('. ') ? review.body.split('. ')[0] + '.' : review.body;
+
+                        container.innerHTML = `
+                            <main class="review-page">
+                                <a href="movies.html" class="review-back">&larr; Back to Reviews</a>
+                                <section class="review-hero" style="background-image: url('${review.thumbnail}')">
+                                    <div class="review-hero-overlay">
+                                        <span class="review-hero-tag">Movie Review</span>
+                                        <h1 class="review-detail-title">${review.title}</h1>
+                                        <p class="review-deck">${deck}</p>
+                                    </div>
+                                </section>
+                                <div class="review-caption">Image courtesy of Unsplash</div>
+
+                                <section class="review-article-layout">
+                                    <aside class="review-byline">
+                                        <div class="review-author-avatar">${review.author.charAt(0)}</div>
+                                        <div>
+                                            <div>By <strong>${review.author}</strong></div>
+                                            <div class="review-date">July 13, 2026 &bull; 4 min read</div>
+                                        </div>
+                                    </aside>
+
+                                    <article class="review-body">
+                                        <div class="review-stars">${stars}</div>
+                                        <p>${review.body}</p>
+                                    </article>
+
+                                    <aside class="review-newsletter">
+                                        <h2>Enjoying The Film Newsletter</h2>
+                                        <p>Movie thoughts, quick hits, and new reviews straight to your inbox.</p>
+                                    </aside>
+                                </section>
+                            </main>
+                        `;
+                    })
+                    .catch(error => {
+                        console.error('Error loading review:', error);
+                        container.innerHTML = '<div class="review-detail"><p>Error loading review. <a href="movies.html">Back to reviews</a></p></div>';
+                    });
+            }
+        </script>
+
+    </body>
+</html>
