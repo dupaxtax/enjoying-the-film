@@ -24,6 +24,18 @@
             const slug = params.get('movie');
             const container = document.getElementById('review-content');
 
+            // Converts lightweight markup in review text to HTML:
+            // *italic*, **bold**, [link text](url)
+            function formatText(text) {
+                return text
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+                    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+            }
+
             if (!slug) {
                 container.innerHTML = '<div class="review-detail"><p>No review specified. <a href="movies.html">Back to reviews</a></p></div>';
             } else {
@@ -39,7 +51,8 @@
                         document.title = review.title + ' | Enjoying The Film';
 
                         const stars = '&#9733;'.repeat(review.rating) + '&#9734;'.repeat(5 - review.rating);
-                        const deck = review.body.includes('. ') ? review.body.split('. ')[0] + '.' : review.body;
+                        const paragraphs = review.body.split(/\n\n+/);
+                        const deck = review.deck || (paragraphs[0].includes('. ') ? paragraphs[0].split('. ')[0] + '.' : paragraphs[0]);
 
                         container.innerHTML = `
                             <main class="review-page">
@@ -48,7 +61,7 @@
                                     <div class="review-hero-overlay">
                                         <span class="review-hero-tag">Movie Review</span>
                                         <h1 class="review-detail-title">${review.title}</h1>
-                                        <p class="review-deck">${deck}</p>
+                                        <p class="review-deck">${formatText(deck)}</p>
                                     </div>
                                 </section>
                                 <div class="review-caption">Image courtesy of Unsplash</div>
@@ -58,20 +71,22 @@
                                         <div class="review-author-avatar">${review.author.charAt(0)}</div>
                                         <div>
                                             <div>By <strong>${review.author}</strong></div>
-                                            <div class="review-date">July 13, 2026 &bull; 4 min read</div>
+                                            <div class="review-date">July 26, 2026 </div>
                                         </div>
                                     </aside>
 
                                     <article class="review-body">
-                                        <div class="review-stars">${stars}</div>
-                                        <p>${review.body}</p>
+                                        <!-- <div class="review-stars">${stars}</div> -->
+                                        ${paragraphs.map(p => p.startsWith('> ')
+                                            ? `<blockquote>${formatText(p.slice(2))}</blockquote>`
+                                            : `<p>${formatText(p)}</p>`).join('')}
                                     </article>
 
-                                    <aside class="review-newsletter">
-                                        <h2>Enjoying The Film Newsletter</h2>
-                                        <p>Movie thoughts, quick hits, and new reviews straight to your inbox.</p>
-                                    </aside>
-                                </section>
+                                <!--     <aside class="review-newsletter"> -->
+                                <!--         <h2>Enjoying The Film Newsletter</h2> -->
+                                <!--         <p>Movie thoughts, quick hits, and new reviews straight to your inbox.</p> -->
+                                <!--     </aside> -->
+                                <!-- </section> -->
                             </main>
                         `;
                     })

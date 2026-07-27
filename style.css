@@ -155,7 +155,7 @@ ol li::marker {
 
 .reviews-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 24px;
     max-width: 1200px;
     margin: 0 auto;
@@ -361,12 +361,24 @@ ol li::marker {
 .review-body {
     color: #111;
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(25px, 2.1vw, 33px);
+    font-size: clamp(10px, 1.5vw, 25px);
     line-height: 1.62;
 }
 
 .review-body p {
     margin: 0 0 28px 0;
+    text-indent: 1.5em;
+}
+
+.review-body a {
+    color: #47ad32;
+}
+
+.review-body blockquote {
+    margin: 0 0 28px 0;
+    padding-left: 28px;
+    border-left: 4px solid #47ad32;
+    font-style: italic;
 }
 
 .review-newsletter {
