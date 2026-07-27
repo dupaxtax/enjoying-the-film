@@ -14,6 +14,40 @@
         <div id = "site-header"></div>
         <script src = "menu-loader.js"></script>
         <img src = "images/ca-times.brightspotcdn.jpg" alt = "Movie theater" class = "image-placeholder">
+
+        <div class = "heading">
+            <div style = "font-size: 40px; text-align: center;">Recent Reviews</div>
+        </div>
+
+        <div class = "reviews-grid" id = "recent-reviews-grid"></div>
+
+        <script>
+            fetch('movie-reviews.json')
+                .then(response => response.json())
+                .then(data => {
+                    const grid = document.getElementById('recent-reviews-grid');
+                    // new-review.js appends reviews chronologically, so the newest are last
+                    data.reviews.slice(-5).reverse().forEach(review => {
+                        const card = document.createElement('a');
+                        card.className = 'review-card';
+                        card.href = 'review.html?movie=' + review.slug;
+                        card.style.backgroundImage = `url('${review.thumbnail}')`;
+                        card.innerHTML = `
+                            <div class = "review-card-overlay">
+                                <span class = "review-card-tag">Movie Review</span>
+                                <h3 class = "review-card-title">${review.title}</h3>
+                                <div class = "review-card-author">
+                                    <div class = "review-card-avatar"></div>
+                                    <span>By ${review.author}</span>
+                                </div>
+                            </div>
+                        `;
+                        grid.appendChild(card);
+                    });
+                })
+                .catch(error => console.error('Error loading reviews:', error));
+        </script>
+
         <div id = "site-footer"></div>
     </body>
 </html>
