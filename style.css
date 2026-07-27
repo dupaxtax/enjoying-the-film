@@ -77,15 +77,32 @@ body {
 }
 
 .footer {
+    margin-top: 60px;
+    padding: 40px 100px;
+    border-top: 1px solid #e0e0e0;
     background-color: white;
-    padding: 60px 100px;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
 }
 
 .footer-link {
     color: black;
-    font-size: 10px;
+    font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: #777;
+    text-decoration: underline;
 }
 
 .list {
