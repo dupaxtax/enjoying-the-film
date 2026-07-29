@@ -30,6 +30,7 @@
                 .then(response => response.json())
                 .then(data => {
                     const grid = document.getElementById('reviews-grid');
+                    const sorted = data.reviews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
                     data.reviews.forEach(review => {
                         const card = document.createElement('a');
                         card.className = 'review-card';

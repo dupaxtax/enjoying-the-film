@@ -51,6 +51,13 @@ body {
     font-weight: 700;
 }
 
+.about-photo {
+    width: 60%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 24px;
+}
+
 .button {
     display: inline-block;
     padding: 20px 50px;
@@ -78,31 +85,63 @@ body {
 
 .footer {
     margin-top: 60px;
-    padding: 40px 100px;
-    border-top: 1px solid #e0e0e0;
-    background-color: white;
+    padding: 0 24px 24px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.footer-links {
+.footer-pill {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 14px 28px;
+    border: 1px solid #e0e0e0;
+    border-radius: 999px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.footer-zone {
+    flex: 1;
+    display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 24px;
 }
 
+.footer-right {
+    justify-content: flex-end;
+}
+
+.footer-copy {
+    color: black;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
 .footer-link {
     color: black;
     font-size: 14px;
+    font-weight: 600;
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .footer-link:hover {
-    color: #777;
     text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .footer-pill {
+        flex-direction: column;
+    }
+
+    .footer-zone,
+    .footer-right {
+        justify-content: center;
+    }
 }
 
 .list {
@@ -375,6 +414,21 @@ ol li::marker {
     letter-spacing: 2px;
 }
 
+.star-half {
+    position: relative;
+    display: inline-block;
+    color: #d6d6d6;
+}
+
+.star-half-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    overflow: hidden;
+    color: #47ad32;
+}
+
 .review-body {
     color: #111;
     font-family: Georgia, 'Times New Roman', serif;
@@ -388,7 +442,7 @@ ol li::marker {
 }
 
 .review-body a {
-    color: #47ad32;
+    color: #0066cc;
 }
 
 .review-body blockquote {

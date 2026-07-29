@@ -1,4 +1,8 @@
 (async function () {
+    if (document.readyState === 'loading') {
+        await new Promise(resolve => document.addEventListener('DOMContentLoaded', resolve, { once: true }));
+    }
+
     async function loadPartial(url, elementId) {
         const target = document.getElementById(elementId);
         if (!target) return;

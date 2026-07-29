@@ -36,6 +36,19 @@
                     .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
             }
 
+            // Builds a 5-star display supporting half-star ratings:
+            // full star, half star (full star clipped over an empty one), empty star
+            function renderStars(rating) {
+                let html = '';
+                if (rating === '') return html;
+                for (let i = 1; i <= 5; i++) {
+                    if (rating >= i) html += '&#9733;';
+                    else if (rating >= i - 0.5) html += '<span class="star-half"><span class="star-half-fill">&#9733;</span>&#9733;</span>';
+                    else html += '&#9734;';
+                }
+                return html;
+            }
+
             if (!slug) {
                 container.innerHTML = '<div class="review-detail"><p>No review specified. <a href="movies.html">Back to reviews</a></p></div>';
             } else {
@@ -50,7 +63,7 @@
 
                         document.title = review.title + ' | Enjoying The Film';
 
-                        const stars = '&#9733;'.repeat(review.rating) + '&#9734;'.repeat(5 - review.rating);
+                        const stars = renderStars(review.rating);
                         const paragraphs = review.body.split(/\n\n+/);
                         const deck = review.deck || (paragraphs[0].includes('. ') ? paragraphs[0].split('. ')[0] + '.' : paragraphs[0]);
 
@@ -71,12 +84,12 @@
                                         <div class="review-author-avatar">${review.author.charAt(0)}</div>
                                         <div>
                                             <div>By <strong>${review.author}</strong></div>
-                                            <div class="review-date">July 26, 2026 </div>
+                                            <div class="review-date">${review.date}</div>
                                         </div>
                                     </aside>
 
                                     <article class="review-body">
-                                        <!-- <div class="review-stars">${stars}</div> -->
+                                        <div class="review-stars">${stars}</div>
                                         ${paragraphs.map(p => p.startsWith('> ')
                                             ? `<blockquote>${formatText(p.slice(2))}</blockquote>`
                                             : `<p>${formatText(p)}</p>`).join('')}

@@ -7,15 +7,16 @@
 
 const fs = require('fs');
 
-const USAGE = `Usage: node new-review.js <review.txt> --title "..." --author "..." --rating <1-5> --thumbnail "..." [--deck "..."] [--slug "..."] [--json path]
+const USAGE = `Usage: node new-review.js <review.txt> --title "..." --author "..." --rating <1-5> --thumbnail "..." [--deck "..."] [--slug "..."] [--date "..."] [--json path]
 
   review.txt     Plain-text review, paragraphs separated by blank lines
   --title        Movie title (required)
   --author       Review author (required)
-  --rating       Integer from 1 to 5 (required)
+  --rating       1 to 5 in half-star steps, e.g. 3.5 (required)
   --thumbnail    Hero image URL (required)
   --deck         Hero excerpt; auto-generated from the first sentence if omitted
   --slug         URL slug; generated from the title if omitted
+  --date         Review date, e.g. "July 28, 2026"; defaults to today
   --json         JSON file to update (default: movie-reviews.json)`;
 
 function fail(message) {
@@ -43,8 +44,8 @@ if (!fs.existsSync(file)) fail('file not found: ' + file);
 });
 
 const rating = Number(flags.rating);
-if (!Number.isInteger(rating) || rating < 1 || rating > 5) {
-    fail('--rating must be an integer from 1 to 5.');
+if (!Number.isFinite(rating) || rating < 1 || rating > 5 || rating % 0.5 !== 0) {
+    fail('--rating must be from 1 to 5 in half-star steps (e.g. 3.5).');
 }
 
 // --- Normalize the body: CRLF -> LF, one paragraph per blank-line block ---
@@ -66,6 +67,11 @@ const deck = flags.deck && flags.deck.trim()
     ? flags.deck.trim()
     : (paragraphs[0].includes('. ') ? paragraphs[0].split('. ')[0] + '.' : paragraphs[0]);
 
+// --- Date: use --date if given, otherwise today (e.g. "July 28, 2026") ---
+const date = flags.date && flags.date.trim()
+    ? flags.date.trim()
+    : new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
 // --- Append to the JSON file ---
 const jsonPath = flags.json || 'movie-reviews.json';
 if (!fs.existsSync(jsonPath)) fail('JSON file not found: ' + jsonPath);
@@ -83,6 +89,7 @@ data.reviews.push({
     deck,
     author: flags.author,
     rating,
+    date,
     body
 });
 
